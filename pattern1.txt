@@ -1,0 +1,14 @@
+	group {
+	   use-host-decl-name on;
+ 
+	  host 2222;
+	     hardward ethernet 2222;
+	     fixed-address 2222;
+	   }
+	}
+    is equivalent to
+    	  host 2222 {
+    	     hardware ethernet 2222;
+      	     fixed-address 2222;
+   	     option host-name  "2222";
+	}
