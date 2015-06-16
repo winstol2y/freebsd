@@ -1,1 +1,0 @@
-\s*group {\s*\n\s*use-host-decl-name on;\s*\n\s*host 2222;\s*\n\s*hardward ethernet 2222;\s*\n\s*fixed-address 2222;\s*\n\s*}\s*\n\s*}\s*\n\s*is equivalent to\s*\n\s*host 2222 {\s*\n\s*hardware ethernet 2222;\s*\n\s*fixed-address 2222;\s*\n\s*option host-name  "2222";\s*\n\s*}\s*
