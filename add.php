@@ -14,8 +14,8 @@ fclose($a);
 fclose($b);
 fclose($c);
 $cmd=shell_exec('./add.sh');
+header('Location: index.php');
 echo "<pre>$cmd</pre>";
 
-header('Location:index.php');
 
 ?> 

@@ -5,7 +5,6 @@ $d=fopen("macAddress_delete.txt", "w");
 //$f=fopen("host_delete.txt", "w");
 
 $mac=$_GET["mac"];
-echo $mac;
 //fwrite($d,$_POST["macAddress_delete"]);
 fwrite($d,$mac);
 //fwrite($e,$_POST["name_delete"]);
@@ -17,6 +16,7 @@ fclose($d);
 //fclose($f);
 
 $cmd=shell_exec('./delete.sh');
+    header('Location:index.php');
 echo "<pre>$cmd</pre>";
 
         
@@ -59,7 +59,6 @@ echo "<pre>$cmd</pre>";
           echo '</tr>';
        }
 
-    header('Location:index.php');
     
     ?>
 
