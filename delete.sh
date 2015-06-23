@@ -8,7 +8,7 @@ macAddress_delete1=/#$macAddress/d
 macAddress_delete2=/$macAddress/d
 
 toFile=/usr/local/www/dhcp/1.txt
-listFile=/usr/local/www/dhcp/index.txt
+listFile=/usr/local/www/dhcp/list.txt
 
 sed "$macAddress_delete1" $toFile > 11.txt
 sed "$macAddress_delete2" $listFile > 12.txt
