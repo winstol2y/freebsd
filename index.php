@@ -1,7 +1,7 @@
 <html>
    <head>
        <meta content="list/html; charset=utf-8" http-equiv="Content-Type" />
-       <title>ทดสอบแสดงค่า</title>
+       <title>แสดงค่า</title>
    </head>
    <body>
    	   <form action="add.php" method="post" name="frm_data">
@@ -9,7 +9,7 @@
       <br>
       <br>
       <br>
-   <caption><h3>ทดสอบ การรับ-ส่งค่า</h3></caption>
+   <caption><h3>รับ-ส่งค่า</h3></caption>
    <tr>
     <td align="right">Mac Address :</td><td><input name="macAddress_add" type="text" /></td>
    </tr>
@@ -31,7 +31,7 @@
       <br>
       <br>
       <caption>
-      <h3>ทดสอบแสดงค่า</h3>
+      <h3>แสดงค่า</h3>
       <br>
       <?php
         
@@ -51,7 +51,7 @@
     		 	echo '</tr>';
 
 
-  			 $text = file('/Applications/XAMPP/xamppfiles/htdocs/list.txt');
+  			 $text = file('/usr/local/www/dhcp/list.txt');
 			 foreach($text as $value)
 			 {	
 

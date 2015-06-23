@@ -36,7 +36,7 @@ echo "<pre>$cmd</pre>";
           echo '</tr>';
 
 
-         $text = file('/Applications/XAMPP/xamppfiles/htdocs/list.txt');
+         $text = file('/usr/local/www/dhcp/list.txt');
        foreach($text as $value)
        {  
 
@@ -59,7 +59,7 @@ echo "<pre>$cmd</pre>";
           echo '</tr>';
        }
 
-    header('Location:list.php');
+    header('Location:index.php');
     
     ?>
 

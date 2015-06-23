@@ -1,14 +1,14 @@
 #!/bin/sh
 
-macAddress=`cat /Applications/XAMPP/xamppfiles/htdocs/macAddress_delete.txt`
-#name=`cat /Applications/XAMPP/xamppfiles/htdocs/name_delete.txt`
-#host=`cat /Applications/XAMPP/xamppfiles/htdocs/host_delete.txt`
+macAddress=`cat /usr/local/www/dhcp/macAddress_delete.txt`
+#name=`cat /usr/local/www/dhcp/name_delete.txt`
+#host=`cat /usr/local/www/dhcp/host_delete.txt`
 
 macAddress_delete1=/#$macAddress/d
 macAddress_delete2=/$macAddress/d
 
-toFile=/Applications/XAMPP/xamppfiles/htdocs/1.txt
-listFile=/Applications/XAMPP/xamppfiles/htdocs/list.txt
+toFile=/usr/local/www/dhcp/1.txt
+listFile=/usr/local/www/dhcp/index.txt
 
 sed "$macAddress_delete1" $toFile > 11.txt
 sed "$macAddress_delete2" $listFile > 12.txt

@@ -1,11 +1,11 @@
 #!/bin/sh
 
-macAddress=`cat /Applications/XAMPP/xamppfiles/htdocs/macAddress_add.txt`
-name=`cat /Applications/XAMPP/xamppfiles/htdocs/name_add.txt`
-host=`cat /Applications/XAMPP/xamppfiles/htdocs/host_add.txt`
+macAddress=`cat /usr/local/www/dhcp/macAddress_add.txt`
+name=`cat /usr/local/www/dhcp/name_add.txt`
+host=`cat /usr/local/www/dhcp/host_add.txt`
 
 remove='#'$macAddress
-toFile=/usr/local/etc/dhcpd.conf 
+toFile=/usr/local/www/dhcp/dhcpd.conf 
                                                           
 echo "    	  host $name {												$remove" >> $toFile
 echo "    	     hardware ethernet $macAddress;					$remove" >> $toFile

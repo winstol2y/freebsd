@@ -16,6 +16,6 @@ fclose($c);
 $cmd=shell_exec('./add.sh');
 echo "<pre>$cmd</pre>";
 
-header('Location:list.php');
+header('Location:index.php');
 
 ?> 
