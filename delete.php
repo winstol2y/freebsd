@@ -8,17 +8,17 @@ $mac=$_GET["mac"];
 //fwrite($d,$_POST["macAddress_delete"]);
 fwrite($d,$mac);
 //fwrite($e,$_POST["name_delete"]);
-
 //fwrite($f,$_POST["host_delete"]);
 
 fclose($d);
 //fclose($e);
 //fclose($f);
-
 $cmd=shell_exec('./delete.sh');
-    header('Location:index.php');
+	header('Location:index.php');
 echo "<pre>$cmd</pre>";
 
+$cmd1=shell_exec('sh service_isc_restart.sh');
+ echo "<pre>$cmd1</pre>";
         
           echo '<tr>';
         echo '<td>';

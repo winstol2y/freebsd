@@ -17,5 +17,7 @@ $cmd=shell_exec('./add.sh');
 header('Location: index.php');
 echo "<pre>$cmd</pre>";
 
+$cmd1=shell_exec('sh service_isc_restart.sh');
+echo "<pre>$cmd1</pre>";
 
 ?> 

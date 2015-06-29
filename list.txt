@@ -1,0 +1,4 @@
+08:00:27:e6:d1:53 ,win,win.throughwave1.com
+08:00:27:ba:9c:c9 ,fony,fony.throughwave1.com
+08:00:27:d5:cd:99 ,gun,gun.throughwave1.com
+08:00:27:32:D4:11 ,boom,boom.throughwave1.com

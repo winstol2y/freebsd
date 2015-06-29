@@ -5,7 +5,7 @@ name=`cat /usr/local/www/dhcp/name_add.txt`
 host=`cat /usr/local/www/dhcp/host_add.txt`
 
 remove='#'$macAddress
-toFile=/usr/local/www/dhcp/1.txt 
+toFile=/usr/local/etc/dhcpd.conf
                                                           
 echo "host $name {									$remove" >> $toFile
 echo "    hardware ethernet $macAddress;					$remove" >> $toFile
