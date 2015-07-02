@@ -21,6 +21,10 @@
     <td align="right">Name :</td><td><input name="name_add" type="text" /></td>
    </tr>
 
+  <tr>
+      <td align="right">IP Address :</td><td><input name="ip_add" type="text" /></td>
+ </tr>
+
    <tr>
     </td><td><td><input name="but_submit" type="submit" value="ส่งค่า" /></td>
    </tr>
@@ -35,33 +39,45 @@
       <br>
       <?php
         
-    			echo '<tr>';
-			 	echo '<td>';
+    		echo '<tr>';
+		
+            	 	echo '<td>';
     		 	print "Mac Address";
     		 	echo '</td>';
-    		 	echo '<td>';
-    		 	print "Host Name";
+                 
+		        echo '<td>';
+                        print "IP Address";
+                        echo '</td>';
+    		 
+			echo '<td>';
+    		 	print "Name";
     		 	echo '</td>';
-    		 	echo '<td>';
-    		 	print "Host";
+    		
+		 	echo '<td>';
+    		 	print "Host Name";
        		 	echo '</td>';
-       		 	echo '<td>';
+       		
+		 	echo '<td>';
        		 	print "Function";
     		 	echo '</td>';
-    		 	echo '</tr>';
+    		
+	 	echo '</tr>';
 
 
   			 $text = file('/usr/local/www/dhcp/list.txt');
 			 foreach($text as $value)
 			 {	
 
-			 	$myString = $value.'<br/>';
+			 	$myString = $value;
 			 	$myArray = explode(',', $myString);
 			 
 			 	echo '<tr>';
 			 	echo '<td>';
     		 	print $myArray[0];
     		 	echo '</td>';
+			echo '<td>';
+			print $myArray[3];
+			echo '</td>';
     		 	echo '<td>';
     		 	print $myArray[1];
     		 	echo '</td>';
@@ -69,7 +85,7 @@
     		 	print $myArray[2];
     		 	echo '</td>';
     		 	echo '<td>';
-    		 	echo '<a href=delete.php?mac='.$myArray[0].'>delete</a>';
+    		 	echo '<a href=delete.php?ip='.trim($myArray[3]).'&mac='.$myArray[0].'>delete</a>';
     		 	echo '</td>';
     		 	echo '</tr>';
 			 }

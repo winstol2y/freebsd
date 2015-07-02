@@ -1,26 +1,13 @@
 option domain-name "bkk.throughwave.com";
 option domain-name-servers 192.168.178.10;
 
-default-lease-time 360000;
-max-lease-time 360000;
+default-lease-time 36000;
+max-lease-time 36000;
 
 subnet 10.0.2.0 netmask 255.255.255.0 {
 	range 10.0.2.100 10.0.2.200;      
     }
-subnet 192.168.0.0 netmask 255.255.255.0
+subnet 192.168.0.0 netmask 255.255.254.0
 {
-	range 192.168.0.100 192.168.0.200;
+	range 192.168.0.3 192.168.1.255;
 }
-
-host win {									#08:00:27:e6:d1:53
-    hardware ethernet 08:00:27:e6:d1:53;					#08:00:27:e6:d1:53
-    fixed-address win.throughwave1.com;							#08:00:27:e6:d1:53
-}										#08:00:27:e6:d1:53
-host fony {									#08:00:27:ba:9c:c9
-    hardware ethernet 08:00:27:ba:9c:c9;					#08:00:27:ba:9c:c9
-    fixed-address fony.throughwave1.com;							#08:00:27:ba:9c:c9
-}										#08:00:27:ba:9c:c9
-host gun {									#08:00:27:d5:cd:99
-    hardware ethernet 08:00:27:d5:cd:99;					#08:00:27:d5:cd:99
-    fixed-address gun.throughwave1.com;							#08:00:27:d5:cd:99
-}										#08:00:27:d5:cd:99
