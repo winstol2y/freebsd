@@ -1,10 +1,7 @@
 #!/bin/sh
 
-#echo 'qwerty' | sudo -S service isc-dhcpd stop
 macAddress=`cat /usr/local/www/dhcp/macAddress_delete.txt`
 ip=`cat /usr/local/www/dhcp/ip_delete.txt`
-name=`cat /usr/local/www/dhcp/name_delete.txt`
-#host=`cat /usr/local/www/dhcp/host_delete.txt`
 
 macAddress_delete1=/#$macAddress/d
 macAddress_delete2=/$macAddress/d

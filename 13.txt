@@ -24,11 +24,3 @@ ns1             IN      A       192.168.0.1
 ns2             IN      A       192.168.0.2
 mx              IN      A       192.168.1.4
 mail            IN      A       192.168.1.5
-boom 		IN	A	192.168.0.233
-boom 		IN	A	192.168.0.135
-asd 		IN	A	192.168.0.201
-aaa 		IN	A	192.168.0.201
-fffffffffff 		IN	A	192.168.0.203
-boom 		IN	A	192.168.0.123
-sadasd 		IN	A	192.168.0.203
-vvv 		IN	A	192.168.0.201

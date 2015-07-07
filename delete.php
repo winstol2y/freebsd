@@ -24,55 +24,34 @@ echo "<pre>$cmd</pre>";
 
 $cmd1=shell_exec('sh service_isc_restart.sh');
 echo "<pre>$cmd1</pre>";
-        
-    		echo '<tr>';
-		
-            	 	echo '<td>';
-    		 	print "Mac Address";
-    		 	echo '</td>';
-                 
-		        echo '<td>';
-                        print "IP Address";
-                        echo '</td>';
-    		 
-			echo '<td>';
-    		 	print "Name";
-    		 	echo '</td>';
-    		
-		 	echo '<td>';
-    		 	print "Host Name";
-       		 	echo '</td>';
-       		
-		 	echo '<td>';
-       		 	print "Function";
-    		 	echo '</td>';
-    		
-	 	echo '</tr>';
 
+function table($data){
+	echo '<td>';
+	echo "$data";
+	echo '</td>';
+}        
+echo '<tr>';
+	table("Mac Address");
+	table("IP Address"); 
+	table("Name");	
+	table("Host Name");
+	table("Expire");
+	table("Function");
+echo '</tr>';
 
-  			 $text = file('/usr/local/www/dhcp/list.txt');
-			 foreach($text as $value)
-			 {	
+ $text = file('/usr/local/www/dhcp/list.txt');
+ foreach($text as $value)
+ {	
 
-			 	$myString = $value;
-			 	$myArray = explode(',', $myString);
-			 
-			 	echo '<tr>';
-			 	echo '<td>';
-    		 	print $myArray[0];
-    		 	echo '</td>';
-			echo '<td>';
-			print $myArray[3];
-			echo '</td>';
-    		 	echo '<td>';
-    		 	print $myArray[1];
-    		 	echo '</td>';
-    		 	echo '<td>';
-    		 	print $myArray[2];
-    		 	echo '</td>';
-    		 	echo '<td>';
-    		 	echo '<a href=delete.php?ip='.trim($myArray[3]).'&mac='.$myArray[0].'>delete</a>';
-    		 	echo '</td>';
-    		 	echo '</tr>';
-			 }
-	  ?>
+ 	$myString = $value;
+ 	$myArray = explode(',', $myString);
+ 
+	echo '<tr>';
+	 	table("$myArray[0]");
+		table("$myArray[3]");
+	 	table("$myArray[1]");
+	 	table("$myArray[2]");
+	 	table('<a href=delete.php?ip='.trim($myArray[3]).'&mac='.$myArray[0].'>delete</a>');
+	echo '</tr>';
+	 }
+  ?>
