@@ -27,7 +27,7 @@ elseif(empty($_POST["time_add"])){
 	echo "กรุณากรอก Expire";
 }
 elseif($date12 <= 0){
-	echo "กรุรณาใส่วันที่มากกว่านี้";
+	echo "กรุณาใส่วันที่มากกว่านี้";
 }
 else{
 	$numCharecter=strlen($_POST["macAddress_add"]);
