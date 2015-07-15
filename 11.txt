@@ -1,13 +1,23 @@
-option domain-name "bkk.throughwave.com";
-option domain-name-servers 192.168.178.10;
+#include <stdarg.h>
+ #include <sys/time.h>
+ #include <sys/socket.h>
+ #include <stdio.h>
+ #include <netinet/in.h>
+
+#include <isc/result.h>
+ #include <dhcpctl/dhcpctl.h>
+
+option domain-name "example.org";
+option domain-name-servers ns1.throughwave1.com;
 
 default-lease-time 36000;
-max-lease-time 36000;
+max-lease-time 43200;
 
-subnet 10.0.2.0 netmask 255.255.255.0 {
-	range 10.0.2.100 10.0.2.200;      
-    }
-subnet 192.168.0.0 netmask 255.255.254.0
-{
-	range 192.168.0.3 192.168.1.255;
+subnet 192.168.0.0 netmask 255.255.254.0 {
+  range 192.168.0.2 192.168.0.254;
+}
+
+host fantasia {
+  hardware ethernet 08:00:07:26:c0:a5;
+  fixed-address fantasia.fugue.com;
 }

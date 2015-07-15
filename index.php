@@ -26,7 +26,7 @@
 	</tr>
 	
 	<tr>
-	<td align="right">Expire :</td><td><input name="time_add" type="text" /></td><td align="left">Example : xx-xx-xx </td>
+	<td align="right">Expire :</td><td><input name="time_add" type="text" /></td><td align="left">Example : dd-mm-yyyy  </td>
 	</tr>
 	
 	<tr>
@@ -44,14 +44,19 @@
       <br>
 
 <?php
-		
+
+include("connect.php");		
+
 //---------------------------------------------------------------------------------------------------------------------------------------------------
+
+
 	function table($data){
 		echo '<td>';
 		echo "$data";
 		echo '</td>';
 	}
 	echo '<tr>';	
+		table("  #  ");
 		table("Mac Address");
 		table("IP Address");
 		table("Name");
@@ -60,58 +65,24 @@
 		table("Function");
 	echo '</tr>';
 
-	
-	date_default_timezone_set("Asia/Bangkok");
-	date_default_timezone_get();
-	$t1 = date('d-m-Y');
-	$text = file('/usr/local/www/dhcp/list.txt');
-	foreach($text as $value)
-	{	
+	$query_all_data = "SELECT * FROM `ipv4`";
+	$my_result = mysql_query($query_all_data);
+	$i = 1;
 
-		$myString = $value;
-		$myArray = explode(',', $myString);
-	 
-		$date1=date_create("$t1");
-		$date2=date_create("$myArray[4]");
-		$diff=date_diff($date1,$date2);
-		$date11 = $diff->format("%R%a");
-		$date12 = (int)$date11;
-		//echo $date11;
-		//echo gettype($date11);
-		//echo $date12;
-		//echo gettype($date12);
-		if($date12 <= 0){
-			
-			$ip = $myArray[3]; //ip
-			$mac = $myArray[0]; //mac
+	while($my_row=mysql_fetch_array($my_result)){
+		echo '<tr>';
+		table(" $i ");
+		table($my_row["hw"]);
+		table($my_row["ip"]);
+		table($my_row["name"]);
+		table($my_row["hostname"]);
+		table($my_row["expire"]);
+		table('<a href=delete.php?ip='.trim($my_row["ip"]).'&mac='.trim($my_row["hw"]).'>delete</a>');
+		$i++;
+		echo '</tr>';
+	}
 
-			$d1 = fopen("macAddress_delete.txt", "w");
-			$d2 = fopen("ip_delete.txt", "w");
-
-			fwrite($d1,$mac);
-			fwrite($d2,$ip);
-
-			fclose($d1);
-			fclose($d2);
-			
-			shell_exec('./delete.sh');
-			//echo "<pre>$cmd</pre>";
-			
-			shell_exec('sh service_isc_restart.sh');
-			//echo "<pre>$cmd1</pre>";
-		}
-		elseif($date12 >= 1){
-			echo '<tr>';
-				table("$myArray[0]");
-				table("$myArray[3]");
-				table("$myArray[1]");
-				table("$myArray[2]");
-				table("$myArray[4]");
-				table('<a href=delete.php?ip='.trim($myArray[3]).'&mac='.$myArray[0].'>delete</a>');
-			echo '</tr>';
-		}
-	 }
-	
+mysql_close($con);		
 ?>
 
 <br>

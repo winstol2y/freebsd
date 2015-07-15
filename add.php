@@ -1,4 +1,5 @@
 <?php
+include("connect.php");
 
 date_default_timezone_set("Asia/Bangkok"); //set time zone
 date_default_timezone_get();
@@ -30,69 +31,73 @@ elseif($date12 <= 0){
 	echo "กรุณาใส่วันที่มากกว่านี้";
 }
 else{
-	$numCharecter=strlen($_POST["macAddress_add"]);
-	if($numCharecter>17){
+	$a=fopen("macAddress_add.txt", "w");
+	fwrite($a,$_POST["macAddress_add"]);
+	fclose($a);
+	
+	$result = shell_exec("sed -e 's/[[:punct:]]//g' -e 's/[[:space:]]//g' /usr/local/www/dhcp/macAddress_add.txt");
+	$result1 = trim($result);
+	$numCharecter=strlen($result1);
+
+	$b=fopen("macAddress_add1.txt", "w");
+	fwrite($b,$result);
+	fclose($b);
+ 	
+	$a = '\'s/[[:xdigit:]]\{2\}/&:/g\'';
+	$b = '\'$s/.$//\'';
+	$result_mac = shell_exec("sed -e $a -e $b /usr/local/www/dhcp/macAddress_add1.txt");
+
+	$c=fopen("macAddress_add2.txt", "w");
+	fwrite($c,$result_mac);
+	fclose($c);
+
+	if($numCharecter>12){
 		echo "Mac Address เกิน";
 	}
-	elseif($numCharecter<17){
+	elseif($numCharecter<12){
 		echo "Mac Address ไม่ครบ";
 	}
-	elseif($numCharecter=17){
-	
-		function check($data){
-			$data_for_check=$_POST["$data"];
-			$result_name = shell_exec("grep -cw $data_for_check /usr/local/www/dhcp/list.txt");
-			return $result_name;
-		}
+	elseif($numCharecter=12){
 		
+		$result_mac = trim($result_mac);
+		$mac_query = "SELECT * FROM `ipv4` WHERE `hw` = '".$result_mac."'";
+		$checkMac = mysql_query("$mac_query");
 
-		//$pattern_ip = "/\b($ip_for_check)\b/i";
-		//$result_ip = preg_grep($pattern_ip,file('/usr/local/www/dhcp/list.txt'));
-		//$checkMac=shell_exec("grep -cim1 $_POST[macAddress_add] /usr/local/www/dhcp/list.txt");
-		//$check = "<pre>$checkMac</pre>";
-
-		if(check("macAddress_add") > 0){ //check mac repeat
-			echo "Mac Address ซ้ำ";
+		$result_host = trim($_POST["host_add"]);
+		$host_query = "SELECT * FROM `ipv4` WHERE `hostname` = '".$result_host."'";
+		$checkHost = mysql_query("$host_query");
+		
+		$result_name = trim($_POST["name_add"]);
+		$name_query = "SELECT * FROM `ipv4` WHERE `name` = '".$result_name."'";
+		$checkName = mysql_query("$name_query");
+		
+		$result_ip = trim($_POST["ip_add"]);
+		$ip_query = "SELECT * FROM `ipv4` WHERE `ip` = '".$result_ip."'";
+		$checkIP = mysql_query("$ip_query");
+		echo $checkMac;
+		if(mysql_num_rows($checkMac) > 0){
+ 			echo "Mac Address exists already.";
 		}
-		elseif(check("host_add") > 0){ //check host repeat
-			echo "Host Name ซ้ำ";
+		elseif(mysql_num_rows($checkHost) > 0){
+			echo "Host Name exists already.";
 		}
-		elseif(check("name_add") > 0){ //check name repeat
-			echo "Name ซ้ำ";
+		elseif(mysql_num_rows($checkName) > 0){
+			echo "Name exists already.";
 		}
-		elseif(check("ip_add") > 0){ //check ip repeat
-			echo "IP Address ซ้ำ";
+		elseif(mysql_num_rows($checkIP) > 0){
+			echo "IP address exists already.";
 		}
 		else{
-			$a=fopen("macAddress_add.txt", "w"); // open file
-			$b=fopen("name_add.txt", "w");
-			$c=fopen("host_add.txt", "w");
-			$d=fopen("ip_add.txt", "w");
-			$e=fopen("time_add.txt", "w");
-		
-			fwrite($b,$_POST["name_add"]); //write text to file
-		
-			fwrite($a,$_POST["macAddress_add"]);
-		
-			fwrite($c,$_POST["host_add"]);
-		
-			fwrite($d,$_POST["ip_add"]);
-				
-			fwrite($e,$_POST["time_add"]);
-		
-			fclose($a); // close file
-			fclose($b);
-			fclose($c);
-			fclose($d);
-			fclose($e);
 
-			$cmd=shell_exec('./add.sh'); // run shell add
+			$query_add = "INSERT INTO `dhcpd`.`ipv4` (`hw`, `hostname`, `name`, `ip`, `expire`) VALUES ('".$result_mac."','".$_POST["host_add"]."', '".$_POST["name_add"]."','".$_POST["ip_add"]."','".$_POST["time_add"]."')";
+
+			mysql_query($query_add) or die(mysql_error());
 			header('Location: index.php');
-			echo "<pre>$cmd</pre>";
-		
-			$cmd1=shell_exec('sh service_isc_restart.sh'); //run shell restart service
-			echo "<pre>$cmd1</pre>";
-		}	
+
+//			$cmd1=shell_exec('sh service_isc_restart.sh'); //run shell restart service
+//			echo "<pre>$cmd1</pre>";
+		}
 	}
 }
+mysql_close($con);
 ?> 
