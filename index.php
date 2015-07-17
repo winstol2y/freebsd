@@ -32,9 +32,18 @@
 	<tr>
 	</td><td><td><input name="but_submit" type="submit" value="ส่งค่า" /></td>
 	</tr>
-
 	</form>
-   
+	<table width="500">
+
+	<form action="upload.php" method="post" enctype="multipart/form-data">
+	
+	<br><br><br>
+    		Import CSV file :
+    		<input type="file" name="fileCSV" id="fileCSV">
+    		<input type="submit" value="Import" name="submit">
+	</form>
+
+
     <table width="500">
     	<table border="1">
       <br>

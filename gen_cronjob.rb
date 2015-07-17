@@ -2,13 +2,14 @@
 
 require 'mysql'
 
-
 begin
 	con = Mysql.new 'localhost', 'admin', 'qwerty', 'dhcpd'
 	write = con.query("SELECT * FROM ipv4")
-	count = con.query("SELECT * FROM ipv4 WHERE expire < curdate()")
+	
+	now = Time.now
+	now1 = now.strftime("%Y%m%d")
 
-	con.query("DELETE * FROM ipv4 WHERE expire < curdate()")		
+	con.query("DELETE FROM ipv4 WHERE `expire` < curdate()")
 
 	file = File.open('/usr/local/etc/dhcpd.conf', 'w') 
 	file.puts('option domain-name "bkk.throughwave.com";') 
@@ -33,28 +34,43 @@ begin
 	file.close
 	
 
-	file = File.open('/usr/local/etc/namedb/dynamic/throughwave1.com', 'w')
-	file.puts('$ORIGIN .')
-	file.puts('$TTL 3600       ; 1 hour')
-	file.puts('throughwave1.com.     IN SOA  ns1.throughwave1.com. admin.throughwave1.com. (')
-	file.puts('                             2006051518 ; serial')
-	file.puts('                             10800      ; refresh (3 hours)')
-	file.puts('                             3600       ; retry (1 hour)')
-	file.puts('                             604800     ; expire (1 week)')
-	file.puts('                             300        ; minimum (5 minutes)')
-	file.puts('                             )')
-	file.puts('                     NS      ns1.throughwave1.com.')
-	file.puts('')
-	file.puts('$ORIGIN throughwave1.com.')
-	file.puts('admin                        A       192.168.0.1')
-	file.puts('ns1                  A       192.168.0.1')
-	file.puts('localhost                    A       127.0.0.1')
+	write = con.query("SELECT * FROM ipv4")	
+
+	files = File.open('/usr/local/etc/namedb/dynamic/throughwave1.com', 'w')
+	files.puts('$TTL 3600       ; 1 hour')
+	files.puts('throughwave1.com.     IN SOA  ns1.throughwave1.com. admin.throughwave1.com. (')
 	
-	rs.each_hash do |row|
-	        file.puts(row["name"]+ '                        A       ' +row["ip"])
+	count = File.open("/usr/local/www/dhcp/count.txt", "r+")
+		count.puts('0')
+                a = count.gets.to_i
+                if a < 10
+			files.puts("                             #{now1}0#{a} ; serial")
+                else
+			files.puts("                             #{now1}#{a} ; serial")
+                end
+	count.close
+	ff = File.open("/usr/local/www/dhcp/count.txt", "w")
+	                ff.write(a += 1)
+	ff.close
+
+	files.puts('                             10800      ; refresh (3 hours)')
+	files.puts('                             3600       ; retry (1 hour)')
+	files.puts('                             604800     ; expire (1 week)')
+	files.puts('                             300        ; minimum (5 minutes)')
+	files.puts('                             )')
+	files.puts('                     NS      ns1.throughwave1.com.')
+	files.puts('')
+	files.puts('$ORIGIN throughwave1.com.')
+	files.puts('admin				A       192.168.0.1')
+	files.puts('ns1				A       192.168.0.1')
+	files.puts('localhost			A       127.0.0.1')
+	
+	write.each_hash do |rows|
+	        files.puts(rows["name"]+'				A	' +rows["ip"])
 	end
 
-	file.close
+	files.close
+	
 
 rescue Mysql::Error => e
     puts e.errno
