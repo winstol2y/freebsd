@@ -26,7 +26,7 @@
 	</tr>
 	
 	<tr>
-	<td align="right">Expire :</td><td><input name="time_add" type="text" /></td><td align="left">Example : dd-mm-yyyy  </td>
+	<td align="right">Expire :</td><td><input name="time_add" type="text" /></td><td align="left">Example : yyyy-mm-dd  </td>
 	</tr>
 	
 	<tr>

@@ -27,7 +27,7 @@ elseif(empty($_POST["ip_add"])){
 elseif(empty($_POST["time_add"])){
 	echo "กรุณากรอก Expire";
 }
-elseif($date12 <= 0){
+elseif($date12 < 0){
 	echo "กรุณาใส่วันที่มากกว่านี้";
 }
 else{
@@ -93,9 +93,10 @@ else{
 
 			mysql_query($query_add) or die(mysql_error());
 			header('Location: index.php');
+			
+			shell_exec("./gen_dns_dhcp.rb");
 
-//			$cmd1=shell_exec('sh service_isc_restart.sh'); //run shell restart service
-//			echo "<pre>$cmd1</pre>";
+			shell_exec('sh service_isc_restart.sh'); //run shell restart service
 		}
 	}
 }
