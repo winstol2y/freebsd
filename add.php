@@ -15,9 +15,6 @@ $date12 = (int)$date11;
 if(empty($_POST["macAddress_add"])){
 	echo "กรุณากรอก Mac Address";
 }
-elseif(empty($_POST["host_add"])){
-	echo "กรุณากรอก Host Name";
-}
 elseif(empty($_POST["name_add"])){
         echo "กรุณากรอก Name";
 }
@@ -63,9 +60,9 @@ else{
 		$mac_query = "SELECT * FROM `ipv4` WHERE `hw` = '".$result_mac."'";
 		$checkMac = mysql_query("$mac_query");
 
-		$result_host = trim($_POST["host_add"]);
-		$host_query = "SELECT * FROM `ipv4` WHERE `hostname` = '".$result_host."'";
-		$checkHost = mysql_query("$host_query");
+		$result_zone = trim($_POST["zone_add"]);
+		$zone_query = "SELECT * FROM `ipv4` WHERE `hostname` = '".$result_zone."'";
+		$checkZone = mysql_query("$zone_query");
 		
 		$result_name = trim($_POST["name_add"]);
 		$name_query = "SELECT * FROM `ipv4` WHERE `name` = '".$result_name."'";
@@ -74,11 +71,10 @@ else{
 		$result_ip = trim($_POST["ip_add"]);
 		$ip_query = "SELECT * FROM `ipv4` WHERE `ip` = '".$result_ip."'";
 		$checkIP = mysql_query("$ip_query");
-		echo $checkMac;
 		if(mysql_num_rows($checkMac) > 0){
  			echo "Mac Address exists already.";
 		}
-		elseif(mysql_num_rows($checkHost) > 0){
+		elseif(mysql_num_rows($checkZone) > 0){
 			echo "Host Name exists already.";
 		}
 		elseif(mysql_num_rows($checkName) > 0){
@@ -89,14 +85,14 @@ else{
 		}
 		else{
 
-			$query_add = "INSERT INTO `dhcpd`.`ipv4` (`hw`, `hostname`, `name`, `ip`, `expire`) VALUES ('".$result_mac."','".$_POST["host_add"]."', '".$_POST["name_add"]."','".$_POST["ip_add"]."','".$_POST["time_add"]."')";
+			$query_add = "INSERT INTO `dhcpd`.`ipv4` (`hw`, `zone`, `name`, `ip`, `expire`) VALUES ('".$result_mac."','".$_POST["zone_add"]."', '".$_POST["name_add"]."','".$_POST["ip_add"]."','".$_POST["time_add"]."')";
 
 			mysql_query($query_add) or die(mysql_error());
 			header('Location: index.php');
 			
 			shell_exec("./gen_dns_dhcp.rb");
 
-			shell_exec('sh service_isc_restart.sh'); //run shell restart service
+			shell_exec('./service_isc_restart.sh'); //run shell restart service
 		}
 	}
 }

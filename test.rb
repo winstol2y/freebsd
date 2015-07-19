@@ -1,13 +1,13 @@
 #!/usr/local/bin/ruby
 
-f = File.open("/usr/local/www/dhcp/count.txt", "r")
-		a = f.gets.to_i
-		if a < 10
-			puts "0#{a}"
-		else
-			puts a
-		end
-f.close
-ff = File.open("/usr/local/www/dhcp/count.txt", "w")
-		ff.write(a += 1)
-ff.close
+con = Mysql.new 'localhost', 'admin', 'qwerty', 'dhcpd'
+write = con.query("SELECT * FROM ipv4")
+
+write.each_hash do |row|
+	file_config = "/usr/local/www/dhcp/"
+	
+	count = File.open{"file_config","w"}
+	count.puts
+	
+	count.close
+end

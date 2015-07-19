@@ -11,10 +11,10 @@
 	<br>
 	<caption><h3>รับ-ส่งค่า</h3></caption>
 	<tr>
-	<td align="right">Mac Address :</td><td><input name="macAddress_add" type="text" /></td><td align="left">   Example : xx:xx:xx:xx:xx:xx </td>
+	<td align="right">Mac Address :</td><td><input name="macAddress_add" type="text" /></td>
 	</tr>
 	<tr>
-	<td align="right"> Hostname :</td><td><input name="host_add" type="text" /></td>
+	<td align="right">Zone :</td><td><input name="zone_add" type="text" /></td>
 	</tr>
 
 	<tr>
@@ -69,7 +69,7 @@ include("connect.php");
 		table("Mac Address");
 		table("IP Address");
 		table("Name");
-		table("Host Name");
+		table("Zone");
 		table("Expire");
 		table("Function");
 	echo '</tr>';
@@ -84,7 +84,7 @@ include("connect.php");
 		table($my_row["hw"]);
 		table($my_row["ip"]);
 		table($my_row["name"]);
-		table($my_row["hostname"]);
+		table($my_row["zone"]);
 		table($my_row["expire"]);
 		table('<a href=delete.php?ip='.trim($my_row["ip"]).'&mac='.trim($my_row["hw"]).'>delete</a>');
 		$i++;

@@ -12,14 +12,17 @@ $objDB = mysql_select_db("dhcpd");
 $objCSV = fopen($_FILES["fileCSV"]["name"], "r");
 while (($objArr = fgetcsv($objCSV, 1000, ",")) !== FALSE) {
 	$strSQL = "INSERT INTO ipv4 ";
-	$strSQL .="(hw,hostname,name,ip,expire)";
+	$strSQL .="(hw,zone,name,ip,expire)";
 	$strSQL .="VALUES ";
 	$strSQL .="('$objArr[0]','$objArr[1]','$objArr[2]','$objArr[3]','$objArr[4]') ";
 	$objQuery = mysql_query($strSQL);
 }
 fclose($objCSV);
+
+shell_exec("./gen_dns_dhcp.rb");
+shell_exec("./service_isc_restart.sh");
 header('Location: index.php');
-echo "Upload & Import Done.";
+
 ?>
 </table>
 </body>

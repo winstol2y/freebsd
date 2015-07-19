@@ -27,7 +27,7 @@ begin
 	write.each_hash do |row|
 		file.puts('host '+ row["name"] +' {')
 		file.puts('hardware ethernet '+ row["hw"]+';')
-		file.puts('fixed-address '+ row["hostname"]+';')
+		file.puts('fixed-address '+ row["name"]+'.'+row["zone"]+';')
 		file.puts('}')
 		file.puts('')
 	end      
