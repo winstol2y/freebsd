@@ -1,11 +1,18 @@
 option domain-name "<%= @domain_name%>";
-option domain-name-servers "<%= @domain_name_server%>";
-lease-file-name "/var/db/dhcpd/dhcpd.leases";
+option domain-name-servers <%= @domain_name_server%>;
 
 default-lease-time <%= @default%>;
 max-lease-time <%= @max%>;
+lease-file-name "/var/db/dhcpd/dhcpd.leases";
 
 subnet <%= @ip_address%> netmask <%= @netmask%> {
         range <%= @range_subnet%>;
 }
+
+<% @data_dhcp.each_hash do |row1| -%>
+host <%= row1['name']%> {
+	hardware ethernet <%= row1['hw']%>;
+	fixed-address <%= row1['name']%>.<%= row1['zone']%>;
+}
+<%- end -%>
 

@@ -90,7 +90,7 @@ else{
 			mysql_query($query_add) or die(mysql_error());
 			header('Location: index.php');
 			
-			shell_exec("./gen_dns_dhcp.rb");
+			shell_exec("./test.rb");
 
 			shell_exec('./service_isc_restart.sh'); //run shell restart service
 		}

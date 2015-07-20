@@ -19,7 +19,7 @@ while (($objArr = fgetcsv($objCSV, 1000, ",")) !== FALSE) {
 }
 fclose($objCSV);
 
-shell_exec("./gen_dns_dhcp.rb");
+shell_exec("./test.rb");
 shell_exec("./service_isc_restart.sh");
 header('Location: index.php');
 

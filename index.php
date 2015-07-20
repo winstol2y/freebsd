@@ -4,12 +4,15 @@
 <title>แสดงค่า</title>
 </head>
 <body>
+<table>
+<tr>
+<td>
 	<form action="add.php" method="post" name="frm_data">
 	<table width="500">
 	<br>
 	<br>
 	<br>
-	<caption><h3>รับ-ส่งค่า</h3></caption>
+	<caption><h3>config dns - dhcp</h3></caption>
 	<tr>
 	<td align="right">Mac Address :</td><td><input name="macAddress_add" type="text" /></td>
 	</tr>
@@ -98,5 +101,42 @@ mysql_close($con);
 
 </table>
 </caption>
+</td>
+<td>
+<!--
+	<form action="add.php" method="post" name="frm_data">
+	<table width="1000">
+	<caption><h3>Zone detail</h3></caption>
+	<tr>
+	<td align="right">refresh :</td><td><input name="refresh" type="text" /></td>
+	</tr>
+	<tr>
+	<td align="right">retry :</td><td><input name="retry" type="text" /></td>
+	</tr>
+	
+	<tr>
+	<td align="right">expire :</td><td><input name="expire" type="text" /></td>
+	</tr>
+
+       <tr>
+       <td align="right">minimum :</td><td><input name="minimum" type="text" /></td>
+       </tr>
+       
+       <tr>
+       <td align="right">Expire :</td><td><input name="expire" type="text" /></td>
+       </tr>
+	
+       <tr>
+       </td><td><td><input name="but_submit" type="submit" value="submit" /></td>
+       </tr>
+	<table width="2000">
+	<table border="1">
+	<caption><h3>display value</h3></caption>
+	<br>
+       </form
+-->
+</td>
+</tr>
+</table>
 </body>
 </html>
