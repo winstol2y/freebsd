@@ -1,0 +1,16 @@
+$TTL 3600	; 1 hour
+<%= @zone%>.	IN SOA  ns1.<%= @zone%>. admin.<%= @zone%>. (
+			<%= @date_now%><%= @count_serial%>	; serial
+			<%= @refresh%>	; refresh (3 hours)
+			<%= @retry1%>	; retry (1 hour)
+			<%= @expire%>	; expire (1 week)
+			<%= @minimum%>	; minimum (5 minutes)
+			)
+			NS	ns1.<%= @zone%>.
+$ORIGIN <%= @zone%>.
+admin			A	192.168.0.1
+ns1			A	192.168.0.1
+localhost		A	127.0.0.1
+<% data_dns.each_hash do |row1| %>
+	<%= row1['hostname']%>			A	<%= row1['ip']%>
+<% end %>

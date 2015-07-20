@@ -1,0 +1,11 @@
+option domain-name "<%= @domain_name%>";
+option domain-name-servers "<%= @domain_name_server%>";
+lease-file-name "/var/db/dhcpd/dhcpd.leases";
+
+default-lease-time <%= @default%>;
+max-lease-time <%= @max%>;
+
+subnet <%= @ip_address%> netmask <%= @netmask%> {
+        range <%= @range_subnet%>;
+}
+
