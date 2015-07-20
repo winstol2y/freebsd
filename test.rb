@@ -13,7 +13,7 @@ class Dhcp_header
         end
         def render path
                 content = File.read(File.expand_path(path))
-                t = ERB.new(content)
+                t = ERB.new(content,nil,'%<>-')
                 t.result(binding)
         end
 end
@@ -27,13 +27,9 @@ class Dns_header
 		@expire = expire
 		@minimum = minimum
 	end
-	def intialize hostname, ip
-		@host_name = hostname
-		@ip = ip
-	end
 	def render path
 		content = File.read(File.expand_path(path))
-		t = ERB.new(content)
+		t = ERB.new(content,nil,'%<>-')
 		t.result(binding)
 	end
 end
@@ -58,10 +54,7 @@ end
 		file_dns = File.open(file_config_dns, 'w')
 		insert_dns_head = Dns_header.new(zone1, date_now, count_serial1, "10800", "3600", "604800", "300")
 		file_dns.puts insert_dns_head.render("template_dns.erb")
-		data_dns = con.query("SELECT * FROM ipv4 WHERE ipv4.`zone` = '#{rows["zone"]}'")
-	#	zone_data.each_hash do |rows1|
-	#			insert_dns_data = Dns_header.new("#{rows1['name']}", "#{rows1['ip']}")
-	#			file_dns.puts insert_dns_data.render("template_dns_data.erb")
+		$data_dns = con.query("SELECT * FROM ipv4 WHERE ipv4.`zone` = '#{rows["zone"]}'")
 		file_dns.close
 	end
 	count1 = File.open("/usr/local/www/dhcp/count.txt", "w")
