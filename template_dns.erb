@@ -1,10 +1,10 @@
 $TTL 3600	; 1 hour
 <%= @zone%>.	IN SOA  ns1.<%= @zone%>. admin.<%= @zone%>. (
 			<%= @date_now%><%= @count_serial%>	; serial
-			<%= @refresh%>	; refresh (3 hours)
-			<%= @retry1%>	; retry (1 hour)
-			<%= @expire%>	; expire (1 week)
-			<%= @minimum%>	; minimum (5 minutes)
+			<%= @refresh%>		; refresh (3 hours)
+			<%= @retry1%>		; retry (1 hour)
+			<%= @expire%>		; expire (1 week)
+			<%= @minimum%>		; minimum (5 minutes)
 			)
 			NS	ns1.<%= @zone%>.
 $ORIGIN <%= @zone%>.
