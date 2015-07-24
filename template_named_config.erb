@@ -348,10 +348,6 @@ zone "ip6.int"		{ type master; file "/usr/local/etc/namedb/master/empty.db"; };
 
 # An example dynamic zone
 <% @zone_union.each_hash do |row11|-%>
-key "<%= row11['zone']%>" {
-        algorithm hmac-md5;
-        secret "2XwrvyC39NLNnji5aH5g5A==";
-};
 zone "<%= row11['zone']%>" {
         type master;
         file "/usr/local/etc/namedb/dynamic/<%= row11['zone']%>";

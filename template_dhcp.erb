@@ -5,8 +5,8 @@ default-lease-time <%= @default%>;
 max-lease-time <%= @max%>;
 lease-file-name "/var/db/dhcpd/dhcpd.leases";
 
-subnet <%= @ip_address%> netmask <%= @netmask%> {
-        range <%= @range_subnet%>;
+subnet <%= @subnet%> netmask <%= @netmask%> {
+        range <%= @range%>;
 }
 
 <% @data_dhcp.each_hash do |row1| -%>

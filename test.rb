@@ -2,14 +2,14 @@
 require "erb"
 require "mysql"
 class Dhcp_header
-        def initialize domain_name, domain_name_server, default, max, ip_address, netmask, range_subnet, data_dhcp
+        def initialize domain_name, domain_name_server, default, max, subnet, netmask, range, data_dhcp
                 @domain_name = domain_name
                 @domain_name_server = domain_name_server
                 @default = default
                 @max = max
-                @ip_address = ip_address
+                @subnet = subnet
                 @netmask = netmask
-                @range_subnet = range_subnet
+                @range = range
 		@data_dhcp = data_dhcp
         end
         def render path
@@ -49,7 +49,16 @@ end
 	con = Mysql.new 'localhost', 'admin', 'qwerty', 'dhcpd'
 	domain_name1 = "bkk.throughwave.com"
 	data_dhcp = con.query("SELECT * FROM ipv4")
-	insert_dhcp = Dhcp_header.new(domain_name1,"192.168.178.10","36000","36000","192.168.0.0","255.255.254.0","192.168.0.4 192.168.1.254",data_dhcp)
+	data_subnet = con.query("SELECT * FROM config_subnet")
+	subnet_1 = 0
+	netmask_1 = 0
+	range_1 = 0
+	data_subnet.each_hash do |subnet|
+		subnet_1 = "#{subnet['subnet']}"
+		netmask_1 = "#{subnet['netmask']}"
+		range_1 = "#{subnet['range']}"
+	end
+	insert_dhcp = Dhcp_header.new(domain_name1,"192.168.178.10","36000","36000", subnet_1, netmask_1, range_1, data_dhcp)
 
 	zone_union = con.query("SELECT zone FROM ipv4 UNION SELECT zone FROM ipv4")
 	zone_union2 = con.query("SELECT zone FROM ipv4 UNION SELECT zone FROM ipv4")

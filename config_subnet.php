@@ -1,7 +1,8 @@
 <html>
 <head>
 <meta content="list/html; charset=utf-8" http-equiv="Content-Type" />
-<title>Config Zone detail</title>
+<title>Config Subnet</title>
+
 </head>
 <body>
 <center>
@@ -39,25 +40,21 @@ div {
 <table>
 <tr>
 <td>
-	<form action="update_zone_detail.php" method="post" name="frm_data">
+	<form action="update_subnet.php" method="post" name="frm_data">
 	<table width="700">
 	<th>
-	<caption><font size="5"><h3>config detail</h3></font></caption>
+	<caption><font size="5"><h3>Config Subnet</h3></font></caption>
 	</th>
 	<br><br>
 	<tr>
-		<td align="right"><font size="3"><div>refresh :</div></font></td><td><input name="refresh" type="text" style="width: 200px;" /></td>
+		<td align="right"><font size="3"><div>Subnet :</div></font></td><td><input name="subnet" type="text" style="width: 200px;" /></td>
 	</tr>
 	<tr><div>
-	<td align="right"><font size="3"><div>retry :</div></font></td><td><input name="retry" type="text" style="width: 200px;" /></td>
+	<td align="right"><font size="3"><div>Netmask :</div></font></td><td><input name="netmask" type="text" style="width: 200px;" /></td>
 	</tr>
 
 	<tr>
-	<td align="right"><font size="3"><div>expire :</div></font></td><td><input name="expire" type="text" style="width: 200px;" /></td>
-	</tr>
-	
-	<tr>
-	<td align="right"><font size="3"><div>minimum :</div></font></td><td><input name="minimum" type="text" style="width: 200px;" /></td>
+	<td align="right"><font size="3"><div>range :</div></font></td><td><input name="range" type="text" style="width: 200px;" /></td>
 	</tr>
 	
 	<tr>
@@ -83,21 +80,19 @@ include("connect.php");
 		echo '</th></div>';
 	}
 	echo '<tr>';	
-	table("refresh");
-	table("retry");
-	table("expire");
-	table("minimum");
+	table("Subnet");
+	table("Netmask");
+	table("range");
 	echo '</tr>';
 
-	$query_all_data = "SELECT * FROM `zone_detail`";
+	$query_all_data = "SELECT * FROM `config_subnet`";
 	$my_result = mysql_query($query_all_data);
 
 	while($my_row=mysql_fetch_array($my_result)){
 		echo '<tr>';
-		table($my_row["refresh"]);
-		table($my_row["retry"]);
-		table($my_row["expire"]);
-		table($my_row["minimum"]);
+		table($my_row["subnet"]);
+		table($my_row["netmask"]);
+		table($my_row["range"]);
 		echo '</tr>';
 	}
 	

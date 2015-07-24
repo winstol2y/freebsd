@@ -1,7 +1,7 @@
 <html>
 <head>
 <meta content="list/html; charset=utf-8" http-equiv="Content-Type" />
-<title>config Dns and Dhcp</title>
+<title>Config DNS and DHCP</title>
 </head>
 <body>
 <center>
