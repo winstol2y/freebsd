@@ -53,7 +53,7 @@ div {
 	</tr>
 
 	<tr>
-	<td align="right"><font size="3"><div>Name :</div></font></td><td><input name="name_add" type="text" style="width: 200px;" /></td>
+	<td align="right"><font size="3"><div>Name :</div></font></td><td><input name="name_add" type="text" style="width: 200px;" /></td><td align="left">Only a-z, A-Z, 0-9 </td>
 	</tr>
 	
 	<tr>
@@ -68,12 +68,12 @@ div {
 	<th><td><input name="but_submit" type="submit" value="submit"></td></th>
 	</tr>
 	</form>
-	<table width="450">
+	<table width="900">
 	<form action="upload.php" method="post" enctype="multipart/form-data">
 	<tr><td>
 		Import CSV file :
     		<input type="file" name="fileCSV" id="fileCSV">
-    		<input type="submit" value="Import" name="submit">
+    		<input type="submit" value="Import" name="submit"><div><td align="left"><div>Format : MacAddress (xx:xx:xx:xx:xx:xx) , Zone , Hostname , ip , expire (yyyy-mm-dd)</div></td>
 	</td></tr>
 	</form>
 <br>
@@ -82,13 +82,24 @@ div {
       <caption>
       <h3>Display</h3>
 <br>
+
+<script>
+function myFunction() {
+    var ok = confirm("Are you sure!");
+	if(ok && chk_data() == 0){
+		document.getElementByld("form_new_qus").submit();
+	};
+}
+</script>
 <?php
 
 include("connect.php");		
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
-
-
+//---------------------------------------------------------------------------------------------------------------------------
+	$strSort = $_GET["sort"];
+	if($strSort == ""){
+		$strSort = "zone";
+	}
 	function table($data){
 		echo '<th><div>';
 		echo "$data";
@@ -96,27 +107,28 @@ include("connect.php");
 	}
 	echo '<tr>';	
 		table("  #  ");
-		table("Mac Address");
-		table("IP Address");
-		table("Name");
-		table("Zone");
-		table("Expire");
+		table('<a href=index.php?sort=hw>Mac Address</a>');
+		table('<a href=index.php?sort=ip>IP Address</a>');
+		table('<a href=index.php?sort=name>Name</a>');
+		table('<a href=index.php?sort=zone>Zone</a>');
+		table('<a href=index.php?sort=expire>Expire</a>');
 		table("Function");
 	echo '</tr>';
 
-	$query_all_data = "SELECT * FROM `ipv4`";
+	$query_all_data = "SELECT * FROM `ipv4` ORDER BY `".$strSort."` ASC";
 	$my_result = mysql_query($query_all_data);
 	$i = 1;
 
 	while($my_row=mysql_fetch_array($my_result)){
 		echo '<tr>';
-		table(" $i ");
+		table("$i");
 		table($my_row["hw"]);
 		table($my_row["ip"]);
 		table($my_row["name"]);
 		table($my_row["zone"]);
 		table($my_row["expire"]);
-		table('<a href=delete.php?ip='.trim($my_row["ip"]).'&mac='.trim($my_row["hw"]).'>delete</a>');
+		//table('<a href=delete.php?ip='.trim($my_row["ip"]).'&mac='.trim($my_row["hw"]).'>delete</a>');
+		table('<a href=delete.php?ip='.trim($my_row["ip"]).'&mac='.trim($my_row["hw"]).' onclick=myFunction()>Delete</a>');
 		$i++;
 		echo '</tr>';
 	}

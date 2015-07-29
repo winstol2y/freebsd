@@ -84,15 +84,19 @@ else{
 			echo "IP address exists already.";
 		}
 		else{
+			if(preg_match("/^[a-zA-Z0-9]+$/", $_POST['name_add']) == 0){
+				echo "Change name";
+			}
+			else{
+				$query_add = "INSERT INTO `dhcpd`.`ipv4` (`hw`, `zone`, `name`, `ip`, `expire`) VALUES ('".$result_mac."','".$_POST["zone_add"]."', '".$_POST["name_add"]."','".$_POST["ip_add"]."','".$_POST["time_add"]."')";
 
-			$query_add = "INSERT INTO `dhcpd`.`ipv4` (`hw`, `zone`, `name`, `ip`, `expire`) VALUES ('".$result_mac."','".$_POST["zone_add"]."', '".$_POST["name_add"]."','".$_POST["ip_add"]."','".$_POST["time_add"]."')";
+				mysql_query($query_add) or die(mysql_error());
+				header('Location: index.php');
+				
+				shell_exec("./test.rb");
 
-			mysql_query($query_add) or die(mysql_error());
-			header('Location: index.php');
-			
-			shell_exec("./test.rb");
-
-			shell_exec('./service_isc_restart.sh'); //run shell restart service
+				shell_exec('./service_isc_restart.sh'); //run shell restart service
+			}
 		}
 	}
 }
