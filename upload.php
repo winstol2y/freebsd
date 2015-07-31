@@ -3,6 +3,7 @@
 <title>upload csv</title>
 </head>
 <body>
+
 <?php
 move_uploaded_file($_FILES["fileCSV"]["tmp_name"],$_FILES["fileCSV"]["name"]); // Copy/Upload CSV
 
@@ -56,11 +57,8 @@ fclose($objCSV);
 shell_exec("./test.rb");
 shell_exec("./service_isc_restart.sh");
 //header('Location: index.php');
-
 ?>
-<!--<button onClick = "history.go(-1)"> BACK </button>
-<button onClick = ""> BACK </button>
-<INPUT TYPE="button" onClick="history.go(0)" VALUE="Refresh">-->
+<button onclick="window.location.href='http://localhost:1080/dhcp/index.php'">BACK</button>
 </table>
 </body>
 </html>

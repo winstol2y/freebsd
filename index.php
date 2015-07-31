@@ -1,5 +1,6 @@
 <html>
 <head>
+<link href="css/bootstrap.min.css" rel="stylesheet">
 <meta content="list/html; charset=utf-8" http-equiv="Content-Type" />
 <title>Config DNS and DHCP</title>
 </head>
@@ -26,7 +27,7 @@ table td, th, tr{
 }
 th {
   height: 30px;
-  border: 1px solid navy;
+  border: 0px solid navy;
 }
 input {
         margin-bottom: 1em;
@@ -39,6 +40,12 @@ div {
 <table>
 <tr>
 <td>
+<ul class="nav nav-pills">
+  <li role="presentation" class="active"><a href="#">Home</a></li>
+  <li role="presentation"><a href="#">Profile</a></li>
+  <li role="presentation"><a href="#">Messages</a></li>
+  <li role="presentation"><a href="#">Messages</a></li>
+</ul>
 	<form action="add.php" method="post" name="frm_data">
 	<table width="700">
 	<th>
@@ -85,10 +92,11 @@ div {
 
 <script>
 function myFunction() {
-    var ok = confirm("Are you sure!");
-	if(ok && chk_data() == 0){
-		document.getElementByld("form_new_qus").submit();
-	};
+	var ok = confirm("Are you sure!");
+	if(ok == true){
+		document.getElementByld("form_script").submit();
+		
+	}
 }
 </script>
 <?php
@@ -118,7 +126,6 @@ include("connect.php");
 	$query_all_data = "SELECT * FROM `ipv4` ORDER BY `".$strSort."` ASC";
 	$my_result = mysql_query($query_all_data);
 	$i = 1;
-
 	while($my_row=mysql_fetch_array($my_result)){
 		echo '<tr>';
 		table("$i");
@@ -127,8 +134,7 @@ include("connect.php");
 		table($my_row["name"]);
 		table($my_row["zone"]);
 		table($my_row["expire"]);
-		//table('<a href=delete.php?ip='.trim($my_row["ip"]).'&mac='.trim($my_row["hw"]).'>delete</a>');
-		table('<a href=delete.php?ip='.trim($my_row["ip"]).'&mac='.trim($my_row["hw"]).' onclick=myFunction()>Delete</a>');
+		table('<a id="form_script" href=delete.php?ip='.trim($my_row["ip"]).'&mac='.trim($my_row["hw"]).' onclick=myFunction()>Delete</a>');
 		$i++;
 		echo '</tr>';
 	}
