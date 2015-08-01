@@ -1,12 +1,13 @@
 <html>
 <head>
+<link href="css/bootstrap.min.css" rel="stylesheet">
 <meta content="list/html; charset=utf-8" http-equiv="Content-Type" />
-<title>Config Zone detail</title>
+<title>Config Zone Detail</title>
 </head>
 <body>
 <center>
 <style>
-form {
+form{
   text-align: center;
 }
 h3 {
@@ -25,8 +26,8 @@ table td, th, tr{
   margin: auto;
 }
 th {
-  height: 30px;
-  border: 1px solid navy;
+  height: 50px;
+  border: 0px solid navy;
 }
 input {
         margin-bottom: 1em;
@@ -37,85 +38,92 @@ div {
 }
 </style>
 <table>
+
+<nav class="navbar navbar navbar-inverse">
+<div class="container">
+<p class="navbar-text navbar-left"><font size="3">MENU</font></p>
+<p class="navbar-text navbar-left"><a href="http://localhost:1080/dhcp/index.php" class="navbar-link"><font size="3">DHCP and DNS</font></a></p>
+<p class="navbar-text navbar-left"><a href="http://localhost:1080/dhcp/config_subnet.php" class="navbar-link"><font size="3">Subnet</font></a></p>
+<p class="navbar-text navbar-left"><a href="http://localhost:1080/dhcp/config_zone_detail.php" class="navbar-link"><font size="3">Config Zone Detail</font></a></p>
+
+</div>
+</nav>
 <tr>
-<td>
-	<form action="update_zone_detail.php" method="post" name="frm_data">
+
+<form action="update_zone_detail.php" method="post" name="frm_data">
 	<table width="700">
 	<th>
-	<caption><font size="5"><h3>config detail</h3></font></caption>
+	<caption><font size="5"><h3>Config Zone Detail</h3></font></caption>
 	</th>
-	<br><br>
+	
 	<tr>
-		<td align="right"><font size="3"><div>refresh :</div></font></td><td><input name="refresh" type="text" style="width: 200px;" /></td>
-	</tr>
-	<tr><div>
-	<td align="right"><font size="3"><div>retry :</div></font></td><td><input name="retry" type="text" style="width: 200px;" /></td>
+	<td align="right"><font size="3"><div>refresh :</div></font></td>
+	<td><input name="refresh" type="text" style="width: 200px;" /></td>
 	</tr>
 
 	<tr>
-	<td align="right"><font size="3"><div>expire :</div></font></td><td><input name="expire" type="text" style="width: 200px;" /></td>
+	<td align="right"><font size="3"><div>retry :</div></font></td>
+	<td><input name="retry" type="text" style="width: 200px;" /></td>
 	</tr>
 	
 	<tr>
-	<td align="right"><font size="3"><div>minimum :</div></font></td><td><input name="minimum" type="text" style="width: 200px;" /></td>
+	<td align="right"><font size="3"><div>expire :</div></font></td>
+	<td><input name="expire" type="text" style="width: 200px;" /></td>
+	</tr>
+	
+	<tr>
+	<td align="right"><font size="3"><div>minimum :</div></font></td>
+	<td><input name="minimum" type="text" style="width: 200px;" /></td>
 	</tr>
 	
 	<tr>
 	<th><td><input name="but_submit" type="submit" value="submit"></td></th>
 	</tr>
-	</form>
-<br>
-    <table width="500">
-    	<table border="1">
-      <caption>
-      <h3>Display</h3>
-<br>
+
+</table>
+</form>
+<br><br>
+<table width="800">
+	<h3>Display</h3>
+<br><br>
+</table>
+<div class="container">
+	<table class="table table-striped">
+	<thead>
+
 <?php
 
-include("connect.php");		
+include("connect.php");
 
-//------------------------------------------------------------------------------------------------------------------------------------
+function table($data){
+        echo '<th><div>';
+        echo "$data";
+        echo '</th></div>';
+}
+echo '<tr>';
+table("refresh");
+table("retry");
+table("expire");
+table("minimum");
+echo '</tr>';
 
+$query_all_data = "SELECT * FROM `zone_detail`";
+$my_result = mysql_query($query_all_data);
 
-	function table($data){
-		echo '<th><div>';
-		echo "$data";
-		echo '</th></div>';
-	}
-	echo '<tr>';	
-	table("refresh");
-	table("retry");
-	table("expire");
-	table("minimum");
-	echo '</tr>';
+while($my_row=mysql_fetch_array($my_result)){
+        echo '<tr>';
+        table($my_row["refresh"]);
+        table($my_row["retry"]);
+        table($my_row["expire"]);
+        table($my_row["minimum"]);
+        echo '</tr>';
+}
 
-	$query_all_data = "SELECT * FROM `zone_detail`";
-	$my_result = mysql_query($query_all_data);
-
-	while($my_row=mysql_fetch_array($my_result)){
-		echo '<tr>';
-		table($my_row["refresh"]);
-		table($my_row["retry"]);
-		table($my_row["expire"]);
-		table($my_row["minimum"]);
-		echo '</tr>';
-	}
-	
-
-//---------------------------------------------------------------------------------------------------------------------------------------
-
-mysql_close($con);		
+mysql_close($con);
 ?>
-
-<br>
-</font>
+</thead>
 </table>
 </caption>
-</td>
-<td>
-</td>
-</tr>
-</table>
 </center>
 </body>
 </html>

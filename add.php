@@ -71,6 +71,7 @@ else{
 		$result_ip = trim($_POST["ip_add"]);
 		$ip_query = "SELECT * FROM `ipv4` WHERE `ip` = '".$result_ip."'";
 		$checkIP = mysql_query("$ip_query");
+
 		if(mysql_num_rows($checkMac) > 0){
  			echo "Mac Address exists already.";
 		}

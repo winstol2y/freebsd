@@ -5,10 +5,11 @@ default-lease-time <%= @default%>;
 max-lease-time <%= @max%>;
 lease-file-name "/var/db/dhcpd/dhcpd.leases";
 
-subnet <%= @subnet%> netmask <%= @netmask%> {
-        range <%= @range%>;
+<% @data_subnet.each_hash do |row_subnet| %>
+subnet <%= row_subnet['subnet']%>  netmask <%= row_subnet['netmask']%> {
+        range <%= row_subnet['range']%>;
 }
-
+<% end %>
 <% @data_dhcp.each_hash do |row1| -%>
 host <%= row1['name']%> {
 	hardware ethernet <%= row1['hw']%>;

@@ -2,15 +2,13 @@
 require "erb"
 require "mysql"
 class Dhcp_header
-        def initialize domain_name, domain_name_server, default, max, subnet, netmask, range, data_dhcp
+        def initialize domain_name, domain_name_server, default, max, data_dhcp, data_subnet
                 @domain_name = domain_name
                 @domain_name_server = domain_name_server
                 @default = default
                 @max = max
-                @subnet = subnet
-                @netmask = netmask
-                @range = range
 		@data_dhcp = data_dhcp
+		@data_subnet = data_subnet
         end
         def render path
                 content = File.read(File.expand_path(path))
@@ -50,15 +48,7 @@ end
 	domain_name1 = "bkk.throughwave.com"
 	data_dhcp = con.query("SELECT * FROM ipv4")
 	data_subnet = con.query("SELECT * FROM config_subnet")
-	subnet_1 = 0
-	netmask_1 = 0
-	range_1 = 0
-	data_subnet.each_hash do |subnet|
-		subnet_1 = "#{subnet['subnet']}"
-		netmask_1 = "#{subnet['netmask']}"
-		range_1 = "#{subnet['range']}"
-	end
-	insert_dhcp = Dhcp_header.new(domain_name1,"192.168.178.10","36000","36000", subnet_1, netmask_1, range_1, data_dhcp)
+	insert_dhcp = Dhcp_header.new(domain_name1,"192.168.178.10","36000","36000",data_dhcp,data_subnet)
 
 	zone_union = con.query("SELECT zone FROM ipv4 UNION SELECT zone FROM ipv4")
 	zone_union2 = con.query("SELECT zone FROM ipv4 UNION SELECT zone FROM ipv4")

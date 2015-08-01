@@ -1,7 +1,7 @@
 <?php
 include("connect.php");
 
-			$query_add = "UPDATE `dhcpd`.`config_subnet` SET `subnet`='".$_POST["subnet"]."', `netmask`='".$_POST["netmask"]."', `range`='".$_POST["range"]."'";
+			$query_add = "INSERT INTO `dhcpd`.`config_subnet` (`subnet`,`netmask`,`range`) VALUES ('".$_POST["subnet"]."','".$_POST["netmask"]."','".$_POST["range"]."')";
 
 			mysql_query($query_add) or die(mysql_error());
 			
