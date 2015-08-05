@@ -1,55 +1,77 @@
-<html>
+<html lang="en">
 <head>
-<link href="css/bootstrap.min.css" rel="stylesheet">
-<meta content="list/html; charset=utf-8" http-equiv="Content-Type" />
-<title>Config Subnet</title>
+        <meta content="list/html; charset=utf-8" http-equiv="Content-Type" />
+         <title>Config DNS and DHCP</title>
+        <link rel="stylesheet" href="css/bootstrap.min.css">
 </head>
 <body>
 <center>
 <style>
-form{
-  text-align: center;
-}
-h3 {
-    color: blue;
-    text-align: center;
-}
-table td, th, tr{
-  color: #333;
-  font-family: sans-serif;
-  font-size: .9em;
-  font-weight: 300;
-  text-align: center;
-  line-height: 25px;
-  border: 0px solid navy;
-  width: 800px;
-  margin: auto;
-}
-th {
-  height: 50px;
-  border: 0px solid navy;
-}
-input {
-        margin-bottom: 1em;
-        background-color: azure;
-}
-div {
-    font-weight:bold;
-}
+        form{
+          text-align: center;
+        }
+ 
+        li a{
+                font-size:16px;
+        }
+ 
+        h3 {
+            color: blue;
+            text-align: center;
+        }
+        table td, th, tr{
+          color: #333;
+          font-family: sans-serif;
+          font-size: .9em;
+          font-weight: 300;
+          text-align: center;
+          line-height: 25px;
+          border: 0px solid navy;
+          width: 800px;
+          margin: auto;
+        }
+        th {
+          height: 50px;
+          border: 0px solid navy;
+        }
+/*      input {
+           margin-bottom: 1em;
+           background-color: azure;
+        }*/
+        div {
+            font-weight:bold;
+        }
 </style>
+ 
+        <nav class="navbar navbar-inverse">
+          <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#"></a>
+            </div>
+ 
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+              <ul class="nav navbar-nav">
+                <li><a href="#">Menu</a></li>
+                <li><a href="http://localhost:1080/dhcp/index.php">DHCP and DNS</a></li>
+                <li><a href="http://localhost:1080/dhcp/config_subnet.php">Subnet</a></li>
+                <li><a href="http://localhost:1080/dhcp/config_zone_detail.php">Config Zone Detail</a></li>
+              </ul>
+             
+              <ul class="nav navbar-nav navbar-right">
+                    <form class="navbar-form navbar-left" role="search">
+                        <div class="form-group">
+                          <input type="text" class="form-control" placeholder="Search">
+                        </div>
+                        <button type="submit" class="btn btn-default">Submit</button>
+                     </form>
+              </ul>
+            </div><!-- /.navbar-collapse -->
+          </div><!-- /.container-fluid -->
+        </nav>
+
 <table>
-
-<nav class="navbar navbar navbar-inverse">
-<div class="container">
-<p class="navbar-text navbar-left"><font size="3">MENU</font></p>
-<p class="navbar-text navbar-left"><a href="http://localhost:1080/dhcp/index.php" class="navbar-link"><font size="3">DHCP and DNS</font></a></p>
-<p class="navbar-text navbar-left"><a href="http://localhost:1080/dhcp/config_subnet.php" class="navbar-link"><font size="3">Subnet</font></a></p>
-<p class="navbar-text navbar-left"><a href="http://localhost:1080/dhcp/config_zone_detail.php" class="navbar-link"><font size="3">Config Zone Detail</font></a></p>
-
-</div>
-</nav>
-<tr>
-
 <form action="update_subnet.php" method="post" name="frm_data">
 	<table width="800">
 	<th>
