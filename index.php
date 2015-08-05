@@ -12,7 +12,7 @@
         }
  
         li a{
-                font-size:16px;
+          font-size:16px;
         }
  
         h3 {
@@ -28,12 +28,17 @@
           line-height: 25px;
           border: 0px solid navy;
           width: 800px;
-          Margin: 5px;
         }
         th {
           height: 50px;
           border: 0px solid navy;
         }
+ 
+        tr td{
+          margin-left: auto;
+          margin-right: auto;
+        }
+ 
         div {
             font-weight:bold;
         }
@@ -66,8 +71,9 @@
             </div><!-- /.navbar-collapse -->
           </div><!-- /.container-fluid -->
         </nav>
-
+ 
 <!-- Small modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-lg" data-whatever="@mdo">Small modal</button>
  
 <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
   <div class="modal-dialog modal-sm">
@@ -82,7 +88,7 @@
       <div class="modal-body">
         <div class="row">
           <div class="col-md-6">
-		<a class="btn btn-danger" data-dismiss="modal">Close</a>
+                <a class="btn btn-danger" data-dismiss="modal">Close</a>
           </div>
           <div class="col-md-6">
              <a class="btn btn-primary">Confirm</a>
@@ -94,88 +100,120 @@
   </div>
 </div>
 <!-- End modal -->
-
-
-
+ 
+<!--
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Open modal for @mdo</button>
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@fat">Open modal for @fat</button>
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@getbootstrap">Open modal for @getbootstrap</button>
+...more buttons...
+ 
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="exampleModalLabel">New message</h4>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="recipient-name" class="control-label">Recipient:</label>
+            <input type="text" class="form-control" id="recipient-name">
+          </div>
+          <div class="form-group">
+            <label for="message-text" class="control-label">Message:</label>
+            <textarea class="form-control" id="message-text"></textarea>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Send message</button>
+      </div>
+    </div>
+  </div>
+</div>
+-->
+ 
 <table>
 <tr>
 <form action="add.php" method="post" name="frm_data">
-	<table width="700">
-	<th>
-	<caption><font size="5"><h3>config dns - dhcp</h3></font></caption>
-	</th>
-	
-	<tr>
-	<td align="right"><font size="3"><div>Mac Address :</div></font></td>
-	<td><input name="macAddress_add" type="text" style="width: 200px;" /></td>
-	</tr>
-
-	<tr>
-	<td align="right"><font size="3"><div>Zone :</div></font></td>
-	<td><input name="zone_add" type="text" style="width: 200px;" /></td>
-	</tr>
-	
-	<tr>
-	<td align="right"><font size="3"><div>Name :</div></font></td>
-	<td><input name="name_add" type="text" style="width: 200px;" /></td>
-	<td align="left">Only a-z, A-Z, 0-9 </td>
-	</tr>
-	
-	<tr>
-	<td align="right"><font size="3"><div>IP Address :</div></font></td>
-	<td><input name="ip_add" type="text" style="width: 200px;" /></td>
-	<td align="left">Example : 192.168.111.111 </td>
-	</tr>
-	
-	<tr>
-	<td align="right"><font size="3"><div>Expire :</div></font></td>
-	<td><input name="time_add" type="text" style="width: 200px;" /></td>
-	<td align="left">Example : yyyy-mm-dd  </td>
-	</tr>
-
-	<tr>
-	<th><td><input name="but_submit" type="submit" value="submit"></td></th>
-	</tr>
-
+        <table width="700">
+        <th>
+        <caption><font size="5"><h3>config dns - dhcp</h3></font></caption>
+        </th>
+       
+        <tr>
+        <td align="right"><font size="3"><div>Mac Address :</div></font></td>
+        <td><input class="form-control" name="macAddress_add" type="text" /></td>
+        </tr>
+ 
+        <tr>
+        <td align="right"><font size="3"><div>Zone :</div></font></td>
+        <td><input class="form-control" name="zone_add" type="text" /></td>
+        </tr>
+       
+        <tr>
+        <td align="right"><font size="3"><div>Name :</div></font></td>
+        <td><input class="form-control" name="name_add" type="text" /></td>
+        <td align="left">Only a-z, A-Z, 0-9 </td>
+        </tr>
+       
+        <tr>
+        <td align="right"><font size="3"><div>IP Address :</div></font></td>
+        <td><input class="form-control" name="ip_add" type="text" /></td>
+        <td align="left">Example : 192.168.111.111 </td>
+        </tr>
+       
+        <tr>
+        <td align="right"><font size="3"><div>Expire :</div></font></td>
+        <td><input class="form-control" name="time_add" type="text" /></td>
+        <td align="left">Example : yyyy-mm-dd  </td>
+        </tr>
+ 
+        <tr>
+        <th><td><input class="btn btn-primary" type="submit" value="submit"></td></th>
+        </tr>
+ 
 </table>
 </form>
-
+ 
 <table width="800">
 <form action="upload.php" method="post" enctype="multipart/form-data">
 <br><br>
-	<tr>
-	<td align="right" style="width:100px">Import CSV file :</td>
-	<td style="width:10px"><input type="file" name="fileCSV" id="fileCSV" size="100"></td>
-	<td style="width:10px"><input type="submit" value="Import" name="submit" size="100"></td>
-	<td style="width:300px"><div>  Format : MacAddress (xx:xx:xx:xx:xx:xx) , Zone , Hostname , ip , expire (yyyy-mm-dd)</td>
-	</tr>
+        <tr>
+        <td align="right" style="width:100px">Import CSV file :</td>
+        <td style="width:10px"><input class="btn btn-default" type="file" name="fileCSV" id="fileCSV" size="100"></td>
+        <td style="width:10px"><input class="btn btn-default" type="submit" value="Import" name="submit" size="100"></td>
+        <td style="width:300px"><div>  Format : MacAddress (xx:xx:xx:xx:xx:xx) , Zone , Hostname , ip , expire (yyyy-mm-dd)</td>
+        </tr>
 </form>
 </table>
 <br><br>
 <table width="800">
-	<h3>Display</h3>
+        <h3>Display</h3>
 <br><br>
 </table>
-
-
+ 
+ 
 <div class="container">
-	<table class="table table-striped">
-	<thead>
-
+        <table class="table table-striped">
+        <thead>
+ 
 <?php
-
+ 
 include("connect.php");
-
+ 
 $strSort = $_GET["sort"];
 if($strSort == ""){
-        $strSort = "zone";
+      $strSort = "zone";
 }
 function table($data){
-        echo '<th><div>';
+      echo '<th><div>';
         echo "$data";
         echo '</th></div>';
 }
-
+ 
 echo '<tr>';
         table("  #  ");
         table('<a href=index.php?sort=hw>Mac Address</a>');
@@ -185,11 +223,11 @@ echo '<tr>';
         table('<a href=index.php?sort=expire>Expire</a>');
         table("Function");
 echo '</tr>';
-
+ 
 $query_all_data = 'SELECT * FROM `ipv4` ORDER BY `'.$strSort.'` ASC';
 $my_result = mysql_query($query_all_data);
 $i = 1;
-
+ 
 while($my_row1=mysql_fetch_array($my_result)){
         echo '<tr>';
         table("$i");
@@ -199,30 +237,30 @@ while($my_row1=mysql_fetch_array($my_result)){
         table($my_row1["zone"]);
         table($my_row1["expire"]);
         //table('<a href=delete.php?ip='.trim($my_row1["ip"]).'&mac='.trim($my_row1["hw"]).' onclick=myFunction()>Delete</a>');
-        table('<button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-lg">Delete</button></a>');
+        table('<button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-lg" data-whatever="@<a href=delete.php?ip='.trim($my_row1["ip"]).'&mac='.trim($my_row1["hw"]).' </a>">Delete</button>');
         $i++;
         echo '</tr>';
 }
-
+ 
 mysql_close($con);
 ?>
 </thead>
 </table>
-<br><br>
 </caption>
 </center>
-
+ 
 <script>
 function myFunction() {
     var ok = confirm("Are you sure!");
-	if(ok && chk_data() == 0){
-		document.getElementByld("form_new_qus").submit();
-	};
+        if(ok && chk_data() == 0){
+               document.getElementByld("form_new_qus").submit();
+        };
 }
 </script>
-
+ 
   <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
   <script type="text/javascript" src="js/bootstrap.min.js"></script>
-
+  <script type="text/javascript" src="js/win.js"></script>
+ 
 </body>
 </html>
