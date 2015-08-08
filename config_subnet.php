@@ -1,75 +1,96 @@
 <html lang="en">
 <head>
-        <meta content="list/html; charset=utf-8" http-equiv="Content-Type" />
-         <title>Config DNS and DHCP</title>
-        <link rel="stylesheet" href="css/bootstrap.min.css">
+<meta content="list/html; charset=utf-8" http-equiv="Content-Type" />
+<title>Config DNS and DHCP</title>
+<link rel="stylesheet" href="css/bootstrap.min.css">
 </head>
 <body>
 <center>
 <style>
-        form{
-          text-align: center;
-        }
- 
-        li a{
-                font-size:16px;
-        }
- 
-        h3 {
-            color: blue;
-            text-align: center;
-        }
-        table td, th, tr{
-          color: #333;
-          font-family: sans-serif;
-          font-size: .9em;
-          font-weight: 300;
-          text-align: center;
-          line-height: 25px;
-          border: 0px solid navy;
-          width: 800px;
-          margin: auto;
-        }
-        th {
-          height: 50px;
-          border: 0px solid navy;
-        }
-/*      input {
-           margin-bottom: 1em;
-           background-color: azure;
-        }*/
-        div {
-            font-weight:bold;
-        }
+form{
+  text-align: center;
+}
+
+li a{
+        font-size:16px;
+}
+
+h3 {
+    color: blue;
+    text-align: center;
+}
+table td, th, tr{
+  color: #333;
+  font-family: sans-serif;
+  font-size: .9em;
+  font-weight: 300;
+  text-align: center;
+  line-height: 25px;
+  border: 0px solid navy;
+  width: 800px;
+  margin: auto;
+}
+th {
+  height: 50px;
+  border: 0px solid navy;
+}
+div {
+    font-weight:bold;
+}
 </style>
  
-        <nav class="navbar navbar-inverse">
-          <div class="container-fluid">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-                <a class="navbar-brand" href="#"></a>
-            </div>
- 
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-              <ul class="nav navbar-nav">
-                <li><a href="#">Menu</a></li>
-                <li><a href="http://localhost:1080/dhcp/index.php">DHCP and DNS</a></li>
-                <li><a href="http://localhost:1080/dhcp/config_subnet.php">Subnet</a></li>
-                <li><a href="http://localhost:1080/dhcp/config_zone_detail.php">Config Zone Detail</a></li>
-              </ul>
-             
-              <ul class="nav navbar-nav navbar-right">
-                    <form class="navbar-form navbar-left" role="search">
-                        <div class="form-group">
-                          <input type="text" class="form-control" placeholder="Search">
-                        </div>
-                        <button type="submit" class="btn btn-default">Submit</button>
-                     </form>
-              </ul>
-            </div><!-- /.navbar-collapse -->
-          </div><!-- /.container-fluid -->
-        </nav>
+<nav class="navbar navbar-inverse">
+<div class="container-fluid">
+<!-- Brand and toggle get grouped for better mobile display -->
+<div class="navbar-header">
+<a class="navbar-brand" href="#"></a>
+</div>
+
+<!-- Collect the nav links, forms, and other content for toggling -->
+<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+<ul class="nav navbar-nav">
+<li><a href="#">Menu</a></li>
+<li><a href="http://localhost:1080/dhcp/index.php">DHCP and DNS</a></li>
+<li><a href="http://localhost:1080/dhcp/config_subnet.php">Subnet</a></li>
+<li><a href="http://localhost:1080/dhcp/config_zone_detail.php">Config Zone Detail</a></li>
+</ul>
+     
+<ul class="nav navbar-nav navbar-right">
+<form class="navbar-form navbar-left" role="search">
+<div class="form-group">
+<input type="text" class="form-control" placeholder="Search">
+</div>
+<button type="submit" class="btn btn-default">Submit</button>
+</form>
+</ul>
+</div><!-- /.navbar-collapse -->
+</div><!-- /.container-fluid -->
+</nav>
+
+<div class="modal fade bs-example-modal-lg" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+<div class="modal-dialog modal-sm" role="document">
+<div class="modal-content">
+<!-- Header modal -->
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+<h4 class="modal-title" id="myModalLabel">Delete</h4>
+</div>
+<!-- END Header modal -->
+<!-- Body modal -->
+<div class="modal-body">
+<div class="row">
+<div class="col-md-6">
+<a class="btn btn-danger" data-dismiss="modal">Close</a>
+</div>
+<div class="col-md-6">
+<a id="ok" class="btn btn-primary" href="">Confirm</a>
+</div>
+</div>
+</div>
+<!-- End body modal -->
+</div>
+</div>
+</div>
 
 <table>
 <form action="update_subnet.php" method="post" name="frm_data">
@@ -108,16 +129,6 @@
 <br><br>
 </table>
 
-<script>
-function myFunction() {
-    var ok = confirm("Are you sure!");
-	if(ok && chk_data() == 0){
-		document.getElementByld("form_new_qus").submit();
-	};
-}
-</script>
-
-
 <div class="container">
 	<table class="table table-striped">
 	<thead>
@@ -149,7 +160,8 @@ while($my_row=mysql_fetch_array($my_result)){
 	table($my_row["subnet"]);
         table($my_row["netmask"]);
         table($my_row["range"]);
-	table('<a href=delete_subnet.php?subnet='.trim($my_row["subnet"]).' onclick=myFunction()>Delete</a>');
+	table('<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever=delete_subnet.php?subnet='.trim($my_row["subnet"]).'>Delete</button>');
+	//table('<a href=delete_subnet.php?subnet='.trim($my_row["subnet"]).' onclick=myFunction()>Delete</a>');
 	echo '</tr>';
 	$i++;
 }
@@ -160,5 +172,10 @@ mysql_close($con);
 </table>
 </caption>
 </center>
+
+<script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/win.js"></script>
+
 </body>
 </html>

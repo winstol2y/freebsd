@@ -33,107 +33,69 @@
           height: 50px;
           border: 0px solid navy;
         }
- 
+
         tr td{
           margin-left: auto;
           margin-right: auto;
         }
- 
+
         div {
             font-weight:bold;
         }
 </style>
  
-        <nav class="navbar navbar-inverse">
-          <div class="container-fluid">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-                <a class="navbar-brand" href="#"></a>
-            </div>
- 
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-              <ul class="nav navbar-nav">
-                <li><a href="#">Menu</a></li>
-                <li><a href="http://localhost:1080/dhcp/index.php">DHCP and DNS</a></li>
-                <li><a href="http://localhost:1080/dhcp/config_subnet.php">Subnet</a></li>
-                <li><a href="http://localhost:1080/dhcp/config_zone_detail.php">Config Zone Detail</a></li>
-              </ul>
-             
-              <ul class="nav navbar-nav navbar-right">
-                    <form class="navbar-form navbar-left" role="search">
-                        <div class="form-group">
-                          <input type="text" class="form-control" placeholder="Search">
-                        </div>
-                        <button type="submit" class="btn btn-default">Submit</button>
-                     </form>
-              </ul>
-            </div><!-- /.navbar-collapse -->
-          </div><!-- /.container-fluid -->
-        </nav>
- 
-<!-- Small modal -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-lg" data-whatever="@mdo">Small modal</button>
- 
-<div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
-  <div class="modal-dialog modal-sm">
-    <div class="modal-content">
-      <!-- Header modal -->
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Delete</h4>
-      </div>
-      <!-- END Header modal -->
-      <!-- Body modal -->
-      <div class="modal-body">
-        <div class="row">
-          <div class="col-md-6">
-                <a class="btn btn-danger" data-dismiss="modal">Close</a>
-          </div>
-          <div class="col-md-6">
-             <a class="btn btn-primary">Confirm</a>
-          </div>
-        </div>
-      </div>
-      <!-- End body modal -->
-    </div>
-  </div>
+<nav class="navbar navbar-inverse">
+<div class="container-fluid">
+<!-- Brand and toggle get grouped for better mobile display -->
+<div class="navbar-header">
+<a class="navbar-brand" href="#"></a>
 </div>
-<!-- End modal -->
- 
-<!--
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Open modal for @mdo</button>
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@fat">Open modal for @fat</button>
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@getbootstrap">Open modal for @getbootstrap</button>
-...more buttons...
- 
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="exampleModalLabel">New message</h4>
-      </div>
-      <div class="modal-body">
-        <form>
-          <div class="form-group">
-            <label for="recipient-name" class="control-label">Recipient:</label>
-            <input type="text" class="form-control" id="recipient-name">
-          </div>
-          <div class="form-group">
-            <label for="message-text" class="control-label">Message:</label>
-            <textarea class="form-control" id="message-text"></textarea>
-          </div>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Send message</button>
-      </div>
-    </div>
-  </div>
+
+<!-- Collect the nav links, forms, and other content for toggling -->
+<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+<ul class="nav navbar-nav">
+<li><a href="#">Menu</a></li>
+<li><a href="http://localhost:1080/dhcp/index.php">DHCP and DNS</a></li>
+<li><a href="http://localhost:1080/dhcp/config_subnet.php">Subnet</a></li>
+<li><a href="http://localhost:1080/dhcp/config_zone_detail.php">Config Zone Detail</a></li>
+</ul>
+    
+<ul class="nav navbar-nav navbar-right">
+<form class="navbar-form navbar-left" role="search">
+<div class="form-group">
+<input type="text" class="form-control" placeholder="Search">
 </div>
--->
+<button type="submit" class="btn btn-default">Submit</button>
+</form>
+</ul>
+</div><!-- /.navbar-collapse -->
+</div><!-- /.container-fluid -->
+</nav>
+
+<div class="modal fade bs-example-modal-lg" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+<div class="modal-dialog modal-sm" role="document">
+<div class="modal-content">
+<!-- Header modal -->
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+<h4 class="modal-title" id="myModalLabel">Delete</h4>
+</div>
+<!-- END Header modal -->
+<!-- Body modal -->
+<div class="modal-body">
+<div class="row">
+<div class="col-md-6">
+<a class="btn btn-danger" data-dismiss="modal">Close</a>
+</div>
+<div class="col-md-6">
+<a id="ok" class="btn btn-primary" href="">Confirm</a>
+</div>
+</div>
+</div>
+<!-- End body modal -->
+</div>
+</div>
+</div>
  
 <table>
 <tr>
@@ -206,10 +168,10 @@ include("connect.php");
  
 $strSort = $_GET["sort"];
 if($strSort == ""){
-      $strSort = "zone";
+       $strSort = "zone";
 }
 function table($data){
-      echo '<th><div>';
+       echo '<th><div>';
         echo "$data";
         echo '</th></div>';
 }
@@ -236,8 +198,7 @@ while($my_row1=mysql_fetch_array($my_result)){
         table($my_row1["name"]);
         table($my_row1["zone"]);
         table($my_row1["expire"]);
-        //table('<a href=delete.php?ip='.trim($my_row1["ip"]).'&mac='.trim($my_row1["hw"]).' onclick=myFunction()>Delete</a>');
-        table('<button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-lg" data-whatever="@<a href=delete.php?ip='.trim($my_row1["ip"]).'&mac='.trim($my_row1["hw"]).' </a>">Delete</button>');
+        table('<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever=delete.php?ip='.trim($my_row1["ip"]).'&mac='.trim($my_row1["hw"]).'>Delete</button>');
         $i++;
         echo '</tr>';
 }
@@ -248,15 +209,6 @@ mysql_close($con);
 </table>
 </caption>
 </center>
- 
-<script>
-function myFunction() {
-    var ok = confirm("Are you sure!");
-        if(ok && chk_data() == 0){
-               document.getElementByld("form_new_qus").submit();
-        };
-}
-</script>
  
   <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
   <script type="text/javascript" src="js/bootstrap.min.js"></script>
